@@ -3,10 +3,13 @@
 const BOMB = "💣";
 
 var gBoard;
+var gElSelected = null;
+
 var gLevel = {
   SIZE: 4,
   MINES: 2,
 };
+
 var gGame = {
   isOn: false,
   shownCount: 0,
@@ -83,7 +86,13 @@ function onCellClicked(elCell, i, j) {
   const cell = gBoard[i][j];
   console.log(elCell, i, j);
 
-  if (cell !== BOMB) {
-    elCell.classList.add(".selected");
+  if (elCell !== cell.isMine) {
+    elCell.classList.add("selected");
   }
+
+  if (gElSelected) {
+    elCell.classList.remove("selected");
+  }
+
+  gElSelected = gElSelected !== elCell ? elCell : null;
 }
