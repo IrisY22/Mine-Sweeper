@@ -1,15 +1,36 @@
-/* body {
-  background-color: rgba(105, 98, 98, 0.067);
-  color: rgb(255, 255, 255);
-} */
+* {
+  box-sizing: border-box;
+}
+
+table {
+  width: 200px;
+  height: 200px;
+}
 
 .cell {
   width: 40px;
   height: 40px;
   text-align: center;
   border: 2px solid black;
+  cursor: pointer;
+}
+
+.cell:hover {
+  background-color: rgb(94, 94, 164, 0.5);
 }
 
 .selected {
   background-color: rgb(94, 94, 164);
+}
+
+.popup {
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  margin-right: 5px;
+  background-color: rgb(255, 0, 0);
+
+  position: absolute;
+
+  box-shadow: rgb(212, 96, 96) 7px -3px 18px 4px;
 }
