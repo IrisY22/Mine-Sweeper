@@ -7,17 +7,24 @@
     <link rel="stylesheet" href="css/main.css" />
   </head>
 
-  <body onload="onInit()">
+  <body onload="onInit()" onkeyup="onMovePacman(event)">
     <div hidden class="popup"></div>
 
-    <div class="info">
-      <span class="life">1</span> LIVES LEFT
-      <button class="resetBtn" onclick="resetGame()">😁</button>
+    <div class="level">
+      Game Level:
+      <button class="btn" onclick="gameLevel(4, 3)">Easy</button>
+      <button class="btn" onclick="gameLevel(8, 14)">Medium</button>
+      <button class="btn" onclick="gameLevel(12, 32)">Master</button>
     </div>
 
     <table class="board-container">
       <tbody class="board"></tbody>
     </table>
+
+    <div class="info">
+      <span class="life">3</span> LIVES LEFT
+      <button class="resetBtn" onclick="resetGame()">😁</button>
+    </div>
 
     <footer>&copy; Iris Yatskaer</footer>
 
