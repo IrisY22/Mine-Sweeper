@@ -1,7 +1,13 @@
 "use strict";
 
+var darkMode = false;
+
 const BOMB = "💣";
 const FLAG = "🚩";
+
+var gStartTime;
+var gInterval;
+var tempCounter = 0;
 
 var gBoard;
 var gElSelected = null;
@@ -28,6 +34,9 @@ function onInit() {
 
   gBoard = buildBoard();
   renderBoard(gBoard);
+
+  stopTimer();
+  document.querySelector(".timer").innerText = "0:000";
 }
 
 function buildBoard() {
@@ -121,6 +130,7 @@ function setMinesNegsCount(board) {
 }
 
 function firstClick() {
+  startTimer();
   getRandomEmptyCellPosition();
   for (let i = 0; i < gLevel.MINES; i++) {
     createBombRandomly();
@@ -150,7 +160,7 @@ function onCellClicked(elCell, i, j) {
     renderCell(elCell, false, currCell.minesAroundCount);
     gGame.shownCount++;
   }
-  console.log(gGame.markedCount);
+
   victory();
 }
 
@@ -177,12 +187,23 @@ function gameOver() {
   const elPopup = document.querySelector(".popup");
   elPopup.innerText = `YOU LOSE!`;
   elPopup.hidden = false;
+  elPopup.style.display = "flex";
 
   var emojiBtn = document.querySelector(".resetBtn");
   emojiBtn.textContent = `😓`;
+  setShownOn();
 
   gGame.isOn = false;
   showAllBomb();
+  stopTimer();
+}
+
+function setShownOn() {
+  for (var i = 0; i < gBoard.length; i++) {
+    for (var j = 0; j < gBoard[i].length; j++) {
+      gBoard[i][j].isShown = true;
+    }
+  }
 }
 
 function victory() {
@@ -193,12 +214,14 @@ function victory() {
     emojiBtn.textContent = `😎`;
     const elPopup = document.querySelector(".popup");
     elPopup.innerText = `YOU WIN!`;
+    elPopup.style.display = "flex";
   }
 }
 
 function renderOnRestart() {
   const elPopup = document.querySelector(".popup");
   elPopup.hidden = true;
+  elPopup.style.display = "none";
 
   var emojiBtn = document.querySelector(".resetBtn");
   emojiBtn.textContent = `😁`;
@@ -212,6 +235,7 @@ function resetGame() {
   gGame.shownCount = 0;
   renderOnRestart();
   onInit();
+  stopTimer();
 }
 
 function createBombRandomly() {
@@ -233,16 +257,16 @@ function getRandomEmptyCellPosition() {
     }
   }
 }
-kefels();
-function kefels() {
-  var mat = [];
-  for (let i = 1; i <= 10; i++) {
-    mat[i - 1] = [];
-    console.log(i);
-    for (let j = 1; j <= 10; j++) {
-      var x = i * j;
-      mat[i - 1][j - 1] = x;
-    }
+
+function toggleSwitch() {
+  var elBody = document.querySelector("body");
+  if (darkMode) {
+    elBody.style.backgroundColor = "#e9ecef";
+    darkMode = false;
+  } else {
+    elBody.style.backgroundColor = "black";
+    var elFooter = document.querySelector("footer");
+    elFooter.style.color = " #868e96";
+    darkMode = true;
   }
-  console.log(mat);
 }

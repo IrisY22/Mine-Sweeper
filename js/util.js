@@ -97,7 +97,7 @@ function updateTimer() {
 
 function startTimer() {
   gStartTime = new Date().getTime();
-  gInterval = setInterval(updateTimer, 37);
+  gInterval = setInterval(updateTimer, 45);
 }
 
 function stopTimer() {

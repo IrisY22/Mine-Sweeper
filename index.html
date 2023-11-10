@@ -8,6 +8,16 @@
   </head>
 
   <body onload="onInit()" onkeyup="onMovePacman(event)">
+    <!-- ************ -->
+    <div class="switch-container">
+      <label class="switch">
+        <input type="checkbox" id="switchBtn" onclick="toggleSwitch()" />
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <!-- <button class="btn" onclick="toggleSwitch()">Easy</button> -->
+
     <div hidden class="popup"></div>
 
     <div class="level">
@@ -24,6 +34,7 @@
     <div class="info">
       <span class="life">3</span> LIVES LEFT
       <button class="resetBtn" onclick="resetGame()">😁</button>
+      Timer: <span class="timer"></span>
     </div>
 
     <footer>&copy; Iris Yatskaer</footer>
