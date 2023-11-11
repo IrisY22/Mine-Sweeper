@@ -18,7 +18,10 @@
 
     <!-- <button class="btn" onclick="toggleSwitch()">Easy</button> -->
 
-    <div hidden class="popup"></div>
+    <div hidden class="popup">
+      Best Score:
+      <ol class="score-list"></ol>
+    </div>
 
     <div class="level">
       Game Level:
@@ -27,12 +30,17 @@
       <button class="btn" onclick="gameLevel(12, 32)">Master</button>
     </div>
 
+    <div class="help">
+      <button class="undo" onclick="undoRecursion()">🔙</button>
+      <button class="safe" onclick="safeBtn(this)">🛟🛟🛟</button>
+    </div>
+
     <table class="board-container">
       <tbody class="board"></tbody>
     </table>
 
     <div class="info">
-      <span class="life">3</span> LIVES LEFT
+      <span class="life"></span>
       <button class="resetBtn" onclick="resetGame()">😁</button>
       Timer: <span class="timer"></span>
     </div>

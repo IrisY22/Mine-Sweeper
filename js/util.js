@@ -92,7 +92,8 @@ function getRandomInt(min, max) {
 function updateTimer() {
   const currentTime = new Date().getTime();
   const elapsedTime = (currentTime - gStartTime) / 1000;
-  document.querySelector(".timer").innerText = elapsedTime.toFixed(3);
+  gGame.secsPassed = elapsedTime;
+  document.querySelector(".timer").innerText = elapsedTime.toFixed(2);
 }
 
 function startTimer() {
