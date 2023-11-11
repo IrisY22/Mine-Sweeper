@@ -200,7 +200,7 @@ function showAllBomb() {
 
 function gameOver() {
   const elPopup = document.querySelector(".popup");
-  elPopup.innerText = `YOU LOSE!`;
+  elPopup.innerText += `YOU LOSE!`;
   elPopup.hidden = false;
   elPopup.style.display = "flex";
 
@@ -223,22 +223,49 @@ function setShownOn() {
 
 function victory() {
   var sum = gGame.shownCount + gLevel.MINES;
-
   if (
-    sum === gLevel.SIZE ** 2 &&
-    gGame.shownCount === gLevel.SIZE ** 2 - gLevel.MINES
+    sum !== gLevel.SIZE ** 2 ||
+    gGame.shownCount !== gLevel.SIZE ** 2 - gLevel.MINES
   ) {
-    var emojiBtn = document.querySelector(".resetBtn");
-    emojiBtn.textContent = `😎`;
-    const elPopup = document.querySelector(".popup");
-    elPopup.innerText = `YOU WIN!`;
-    elPopup.style.display = "flex";
-    const playerName = prompt("Well Done! Please enter your name Champ: ");
-    var playerData = {
-      playerName: playerName,
-      score: gGame.secsPassed,
-    };
+    return;
   }
+  var timer = stopTimer();
+  var emojiBtn = document.querySelector(".resetBtn");
+  emojiBtn.textContent = `😎`;
+  const elPopup = document.querySelector(".popup");
+  elPopup.innerHTML = `<div>YOU WIN!</div>`;
+  elPopup.style.display = "flex";
+  const playerName = prompt("Well Done! Please enter your name Champ: ");
+  var playerData = {
+    playerName: playerName,
+    score: timer,
+  };
+  saveData(playerData);
+}
+
+function saveData(playerData) {
+  var storedValue = localStorage.getItem("scoreList");
+
+  if (storedValue === null) {
+    storedValue = [];
+  } else {
+    storedValue = JSON.parse(storedValue);
+  }
+  storedValue.push(playerData);
+  localStorage.setItem("scoreList", JSON.stringify(storedValue));
+  showBestScore(storedValue);
+}
+
+function showBestScore(scoreArr) {
+  const elPopup = document.querySelector(".popup");
+  var scoreHtml = `<ol class="scoreList">LAST SCORES:`;
+  for (let i = 0; i < scoreArr.length && i < 3; i++) {
+    var playerData = scoreArr[i];
+    var li = `<li>  ${playerData.playerName} Score: ${playerData.score}</li>`;
+    scoreHtml += li;
+  }
+  scoreHtml += `</ol>`;
+  elPopup.innerHTML += scoreHtml;
 }
 
 function renderOnRestart() {

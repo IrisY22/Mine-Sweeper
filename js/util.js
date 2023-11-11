@@ -1,5 +1,7 @@
 "use strict";
 
+var gTimer = 0;
+
 function getRandomIntInclusive(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -92,8 +94,10 @@ function getRandomInt(min, max) {
 function updateTimer() {
   const currentTime = new Date().getTime();
   const elapsedTime = (currentTime - gStartTime) / 1000;
+  gTimer = elapsedTime;
   gGame.secsPassed = elapsedTime;
   document.querySelector(".timer").innerText = elapsedTime.toFixed(2);
+  return elapsedTime;
 }
 
 function startTimer() {
@@ -103,4 +107,5 @@ function startTimer() {
 
 function stopTimer() {
   clearInterval(gInterval);
+  return gTimer;
 }

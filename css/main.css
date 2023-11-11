@@ -68,6 +68,10 @@ body {
   cursor: auto;
 }
 
+.scoreList {
+  font-size: 10px;
+}
+
 .undo,
 .safe {
   cursor: pointer;
@@ -78,17 +82,21 @@ body {
   box-shadow: 3px 3px 4px rgba(228, 8, 8, 0.3);
 }
 
-.undo,
+.undo:hover {
+  box-shadow: 2px 2px 4px rgba(222, 75, 75, 0.3);
+  border-radius: 5px;
+}
 .safe:hover {
   box-shadow: 2px 2px 4px rgba(222, 75, 75, 0.3);
   border-radius: 5px;
 }
 
 .popup {
-  width: 35vh;
+  width: 60vh;
   height: 35vh;
-  text-align: end;
-  margin-right: 5px;
+  font-size: 25px;
+  padding-left: 10px;
+  /* margin-right: 5px; */
   background: linear-gradient(
     to right,
 
