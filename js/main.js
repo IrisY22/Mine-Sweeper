@@ -200,7 +200,7 @@ function showAllBomb() {
 
 function gameOver() {
   const elPopup = document.querySelector(".popup");
-  elPopup.innerText += `YOU LOSE!`;
+  elPopup.innerText = `YOU LOSE!`;
   elPopup.hidden = false;
   elPopup.style.display = "flex";
 
